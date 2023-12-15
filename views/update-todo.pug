@@ -1,0 +1,14 @@
+doctype html 
+html 
+    head
+        title Update Todo 
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        include ./includes/header.pug
+        .container
+            h2 Update Todo
+            form(action=`/update-todo/${todo._id}` method="POST")
+                input(type="text" placeholder="Ten cong viec" name="title" value=todo.title) 
+                input(type="text" placeholder="Trang thai" name="status" value=todo.status)
+                input(type="submit" value="Update")
+        include ./includes/footer.pug

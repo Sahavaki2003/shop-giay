@@ -1,0 +1,23 @@
+header.container 
+    a.logo(href="/")
+        //- còn đây là cách import ảnh ra để dùng /img/anhlogo.jpg
+        img(src="/img/logogiay1.jpg", alt="Logo")
+    ul.menu 
+        li 
+            a(href="/") TRANG CHỦ
+        li 
+            a(href="/create-todo") NHÀ CUNG CẤP 
+        if role=='admin'
+            li 
+                a(href="/users") Users
+            li 
+                a(href="/create-user") Create User
+        li 
+            a(href="/books") KHO
+        li 
+            a(href="/create-book") TÌM KIẾM
+        li 
+            if username 
+                a(href="/profile")=username
+            else 
+                a(href="/login") ĐĂNG NHẬP

@@ -1,0 +1,45 @@
+doctype html 
+html 
+    head
+        title Pug Template 
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        include ./includes/header.pug
+        .container
+            h2 SẢN PHẨM
+            table.content-table 
+                thead
+                    td STT 
+                    td Tên Giày  
+                    td Trạng Thái
+                    td Size 
+                    td Giá 
+                    td Hành Động
+                tbody
+                    each todo, index in todos 
+                        tr 
+                            td=index 
+                            td=todo.title 
+                            td=todo.status 
+                            td=todo.size 
+                            td=todo.price 
+                            td  
+                                form(method="post" action=`/delete-todo/${todo._id}`)
+                                    button(type="submit") Xóa
+                                //- form(method="post" action=`/update-todo/${todo._id}`)
+                                //-     button(type="submit") Update
+                                fieldset
+                  
+            div.content   
+                    form(action="/create-todo" method="POST")
+                        h1 Thêm Giày
+                        input(type="text" placeholder="Tên giày" name="title" autocomplete="off") 
+                        input(type="text" placeholder="Size" name="size" autocomplete="off")
+                        input(type="text" placeholder="Trạng thái" name="status" autocomplete="off")
+                        input(type="number" placeholder="Giá tiền" name="price" autocomplete="off") 
+                        button(type="submit") Thêm
+               
+                
+                       
+        include ./includes/footer.pug
+        

@@ -1,0 +1,15 @@
+doctype html 
+html 
+    head
+        title Update User 
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        include ./includes/header.pug
+        .container
+            h2 Update User
+            form(action=`/update-user/${user._id}` method="POST")
+                input(type="text" placeholder="Username" name="username" value=user.username) 
+                input(type="password" placeholder="Password" name="password" value=user.password)
+                input(type="text" placeholder="Role" name="role" value=user.role)
+                input(type="submit" value="Save")
+        include ./includes/footer.pug

@@ -1,0 +1,20 @@
+//-  doctype html 
+html 
+    head
+        title Create Book
+        link(rel="stylesheet", href="/css/style.css")
+        
+    body
+        include ./includes/header.pug
+        .container
+            form(action="/create-book" method="POST" enctype="multipart/form-data")
+                h1 TÌM KIẾM
+                h1 GIÀY 
+                fieldset
+                    input(type="text" placeholder="Tên giày" name="title") 
+                    input(type="text" placeholder="Loại giày" name="author")
+                    input(type="text" placeholder="Giá tiền" name="nxb")
+                    input(type="number" placeholder="kích cỡ" name="publishedYear")
+                    button(type="submit") TÌM KIẾM
+                
+        include ./includes/footer.pug

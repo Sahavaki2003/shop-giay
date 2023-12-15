@@ -1,0 +1,27 @@
+doctype html 
+html 
+    head
+        title TODO LIST 
+        link(rel="stylesheet", href="/css/style.css")
+        link(rel="stylesheet", href="/css/card-style.css")
+        script(src="/js/card.js") 
+    body
+        include ./includes/header.pug
+        .container
+            h2 Sản phẩm
+            .card-category-2
+                ul
+                    each book, idx in books
+                        li
+                            .img-card.iCard-style1
+                                .card-content
+                                    .card-image
+                                        span.card-title=book.title
+                                        img(src=`/img/cover/${book.cover}`)
+                                    
+                                    .card-text
+                                        p=book.description
+                                .card-link
+                                    a(href="#" title="Read Full")
+                                        span Read Full                   
+        include ./includes/footer.pug

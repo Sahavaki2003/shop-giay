@@ -1,0 +1,19 @@
+doctype html 
+html 
+    head
+        title Login
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        include ./includes/header.pug
+        .container
+            form(action="/login" method="POST")
+                h1 ĐĂNG NHẬP
+                fieldset
+                    label(for="username") TÀI KHOẢN ADMIN:
+                    input(type="text" placeholder="nhập tài khoản" name="username" required) 
+                    label(for="password") MẬT KHẨU: 
+                    input(type="password" placeholder="nhập mật khẩu" name="password" required)                    
+                    button(type="submit") ĐĂNG NHẬP
+                if errMessage
+                    p.error=errMessage
+        include ./includes/footer.pug
