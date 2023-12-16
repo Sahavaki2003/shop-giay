@@ -2,18 +2,15 @@ doctype html
 html 
     head
         title User Management
-        link(rel="stylesheet", href="./public/css/style.css")
+        link(rel="stylesheet", href="/css/style.css")
     body
         include ./includes/header.pug
         .container
             h2 USER List
-            table.content-table 
+            table.content-table
                 thead
                     td STT 
-                    td Ten dang nhap 
-                    td mat khau 
-                    td Salt 
-                    td Hpass
+                    td Ten dang nhap
                     td Role 
                     td Action 
                 tbody
@@ -21,11 +18,8 @@ html
                         tr 
                             td=index 
                             td=user.username 
-                            td=user.password
-                            td=user.salt 
-                            td=user.hpass
                             td=user.role 
-                            td=user.role 
+                            td 
                                 a(href=`/delete-user/${user._id}`) Delete
                                 br
                                 a(href=`/update-user/${user._id}`) Update

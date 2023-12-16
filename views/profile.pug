@@ -1,0 +1,15 @@
+doctype html 
+html 
+    head
+        title My profile
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        include ./includes/header.pug
+        .container
+            h2 Profile
+            form(action="/update-user" method="POST")
+                input(type="text" placeholder="Username" name="username") 
+                input(type="password" placeholder="Password" name="password")
+                input(type="text" placeholder="Role" name="role")
+                input(type="submit" value="Create")
+        include ./includes/footer.pug

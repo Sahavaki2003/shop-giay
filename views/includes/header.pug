@@ -1,23 +1,26 @@
-header.container 
+link(rel="stylesheet", href="/css/header.css")
+header.header
     a.logo(href="/")
         //- còn đây là cách import ảnh ra để dùng /img/anhlogo.jpg
         img(src="/img/logogiay1.jpg", alt="Logo")
     ul.menu 
-        li 
-            a(href="/") TRANG CHỦ
-        li 
-            a(href="/create-todo") NHÀ CUNG CẤP 
-        if role=='admin'
-            li 
-                a(href="/users") Users
-            li 
-                a(href="/create-user") Create User
-        li 
-            a(href="/books") KHO
-        li 
+        li(class=((path == '/') ? "active" : undefined))
+            a(href=`/`) TRANG CHỦ 
+        li(class=((path == '/create-todo') ? "active" : undefined))
+            a(href="/create-todo") NHÀ CUNG CẤP
+       
+        li(class=((path == '/create-book') ? "active" : undefined)) 
             a(href="/create-book") TÌM KIẾM
-        li 
+        li(class=((path == '/profile'|| path == '/login') ? "active" : undefined)) 
             if username 
                 a(href="/profile")=username
             else 
                 a(href="/login") ĐĂNG NHẬP
+        if username
+            if role=='admin'
+                li(class=((path == '/users') ? "active" : undefined))
+                    a(href="/users") USERS
+                li(class=((path == '/create-user') ? "active" : undefined)) 
+                    a(href="/create-user") CREATE USER
+                li(class=((path == '/books') ? "active" : undefined)) 
+                    a(href="/books") KHO

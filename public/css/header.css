@@ -1,0 +1,7 @@
+.header {
+  display: flex;
+  flex-direction: column;
+}
+.menu > li.active > a {
+  color: blue !important;
+}

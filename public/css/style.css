@@ -32,27 +32,27 @@ header {
   border-bottom: 2px solid #000;
 }
 
-.logo>img {
+.logo > img {
   width: 70px;
 }
 
-.menu>li {
+.menu > li {
   list-style: none;
   display: inline-block;
   margin: 5px 38px;
   padding: 5px;
 }
 
-.menu>li>a {
+.menu > li > a {
   text-decoration: none;
   color: black;
 }
 
-.menu>li:hover {
+.menu > li:hover {
   background-color: #eee;
 }
 
-.menu>li:hover>a {
+.menu > li:hover > a {
   color: blueviolet;
 }
 
@@ -61,8 +61,6 @@ footer {
   border-top: 2px solid #000;
   text-align: center;
 }
-
-
 
 .content-table {
   border-collapse: collapse;
@@ -73,7 +71,6 @@ footer {
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   width: 100%;
-
 }
 
 .content-table thead tr {
@@ -106,7 +103,7 @@ footer {
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   color: #384047;
 }
 
@@ -162,7 +159,7 @@ select {
 
 button {
   padding: 19px 39px 18px 39px;
-  color: #FFF;
+  color: #fff;
   background-color: #000;
   font-size: 18px;
   text-align: center;
