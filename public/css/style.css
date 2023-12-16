@@ -211,3 +211,12 @@ label.light {
     max-width: 480px;
   }
 }
+
+.error {
+  color: red;
+  margin-top: 20px;
+}
+
+.required {
+  color: red;
+}

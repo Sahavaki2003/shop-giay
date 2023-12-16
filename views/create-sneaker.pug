@@ -1,0 +1,30 @@
+doctype html 
+html 
+    head
+        title Thêm Giày 
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        include ./includes/header.pug
+        .container
+            div.content   
+                form(action="/create-todo" method="POST")
+                    h1 Thêm Giày
+                    div.content 
+                        span Tên Giày 
+                        span(class='required') (*)
+                        input(type="text" placeholder="Tên giày" name="title" autocomplete="off" required) 
+                    div.content 
+                        span Trạng thái
+                        span(class='required') (*)
+                        input(type="text" placeholder="Trạng thái" name="status" autocomplete="off" required)
+                    div.content 
+                        span Size
+                        span(class='required') (*)
+                        input(type="text" placeholder="Size" name="size" autocomplete="off" required)
+                    div.content 
+                        span Giá tiền
+                        span(class='required') (*)
+                        input(type="text" placeholder="Giá tiền" name="price" autocomplete="off" required) 
+                    button(type="submit") Thêm  
+        include ./includes/footer.pug
+        

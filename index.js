@@ -64,8 +64,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", async (req, res) => {
   const todos = await TODO.find({});
-  console.log("todos", todos);
-  console.log(req.role);
   // res.render("home", { todos, path: req.path });
   render(req, res, "home", { todos, path: req.path });
 });
@@ -75,10 +73,7 @@ app.get("/create-todo", (req, res) => {
 });
 
 app.post("/create-todo", auth, async (req, res) => {
-  //validate data
-  console.log("body", req.body);
   await TODO.create(req.body);
-  console.log("Successfully");
   res.redirect("/");
 });
 
@@ -108,14 +103,20 @@ app.get("/create-user", (req, res) => {
   render(req, res, "create-user", { path: req.path });
 });
 
-app.post("/create-user", async (req, res) => {
-  const salt = crypto.randomBytes(16).toString("hex");
-  const hmac = crypto.createHmac("sha256", salt);
-  const hpass = hmac.update(req.body.password).digest("hex");
+app.post("/create-user", auth, async (req, res) => {
+  const username = req.body.username;
+  const user = await USER.find({ username: username });
+  if (!user.length) {
+    const salt = crypto.randomBytes(16).toString("hex");
+    const hmac = crypto.createHmac("sha256", salt);
+    const hpass = hmac.update(req.body.password).digest("hex");
 
-  await USER.create({ ...req.body, salt, hpass });
+    await USER.create({ ...req.body, salt, hpass });
 
-  res.redirect("/users");
+    res.redirect("/users");
+  } else {
+    render(req, res, "create-user", { error: username + " already exits !" });
+  }
 });
 
 app.get("/delete-user/:id", async (req, res) => {
@@ -134,9 +135,16 @@ app.post("/update-user/:id", async (req, res) => {
   res.redirect("/users");
 });
 
-app.get("/profile", (req, res) => {
-  // res.render("profile", { path: req.path });
-  render(req, res, "profile", { path: req.path });
+app.post("/update-profile/:id", async (req, res) => {
+  await USER.findByIdAndUpdate(req.params.id, req.body);
+  console.log("req.body.username", req.body.username);
+  res.redirect("/users");
+});
+
+app.get("/profile/:id", async (req, res) => {
+  console.log("id", req.params.id);
+  const user = await USER.findById(req.params.id);
+  render(req, res, "profile", { user, path: req.path });
 });
 
 app.get("/books", async (req, res) => {
@@ -157,13 +165,20 @@ app.post("/create-book", upload.single("cover"), async (req, res) => {
   res.redirect("/books");
 });
 
+app.get("/create-sneaker", (req, res) => {
+  render(req, res, "create-sneaker", { path: req.path });
+});
+
 app.get("/login", (req, res) => {
-  console.log({ req, res });
   render(req, res, "login", { path: req.path });
 });
 
+app.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/");
+});
+
 app.post("/login", async (req, res) => {
-  console.log("body", req.body);
   if (req.body && req.body.username && req.body.password) {
     const dbUser = await USER.findOne({ username: req.body.username });
     if (dbUser) {
@@ -172,7 +187,7 @@ app.post("/login", async (req, res) => {
       if (hpass === dbUser.hpass) {
         //login thanh cong
         const token = jwt.sign(
-          { username: dbUser.username, role: dbUser.role },
+          { username: dbUser.username, role: dbUser.role, id: dbUser._id },
           config.secretkey
         );
         res.cookie("token", token);

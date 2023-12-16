@@ -13,33 +13,23 @@ html
                     td Tên Giày  
                     td Trạng Thái
                     td Size 
-                    td Giá 
-                    td Hành Động
+                    td Giá
+                    if username
+                            if role=='admin'
+                                td Hành Động
                 tbody
                     each todo, index in todos 
                         tr 
-                            td=index 
+                            td=index + 1
                             td=todo.title 
                             td=todo.status 
                             td=todo.size 
-                            td=todo.price 
-                            td  
-                                form(method="post" action=`/delete-todo/${todo._id}`)
-                                    button(type="submit") Xóa
-                                //- form(method="post" action=`/update-todo/${todo._id}`)
-                                //-     button(type="submit") Update
-                                fieldset
-                  
-            div.content   
-                    form(action="/create-todo" method="POST")
-                        h1 Thêm Giày
-                        input(type="text" placeholder="Tên giày" name="title" autocomplete="off") 
-                        input(type="text" placeholder="Size" name="size" autocomplete="off")
-                        input(type="text" placeholder="Trạng thái" name="status" autocomplete="off")
-                        input(type="number" placeholder="Giá tiền" name="price" autocomplete="off") 
-                        button(type="submit") Thêm
-               
-                
-                       
+                            td=todo.price
+                            if username
+                                if role=='admin'
+                                    td  
+                                        form(method="post" action=`/delete-todo/${todo._id}`)
+                                            button(type="submit") Xóa
+                                        fieldset
         include ./includes/footer.pug
         

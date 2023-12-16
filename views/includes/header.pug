@@ -5,22 +5,24 @@ header.header
         img(src="/img/logogiay1.jpg", alt="Logo")
     ul.menu 
         li(class=((path == '/') ? "active" : undefined))
-            a(href=`/`) TRANG CHỦ 
-        li(class=((path == '/create-todo') ? "active" : undefined))
-            a(href="/create-todo") NHÀ CUNG CẤP
+            a(href=`/`) Trang chủ 
+        //- li(class=((path == '/create-todo') ? "active" : undefined))
+        //-     a(href="/create-todo") NHÀ CUNG CẤP
        
         li(class=((path == '/create-book') ? "active" : undefined)) 
-            a(href="/create-book") TÌM KIẾM
+            a(href="/create-book") Tìm kiếm
         li(class=((path == '/profile'|| path == '/login') ? "active" : undefined)) 
             if username 
-                a(href="/profile")=username
+                a(href=`/profile/${id}`)=username
             else 
-                a(href="/login") ĐĂNG NHẬP
+                a(href="/login") Đăng nhập
         if username
             if role=='admin'
                 li(class=((path == '/users') ? "active" : undefined))
-                    a(href="/users") USERS
+                    a(href="/users") Danh sách user
                 li(class=((path == '/create-user') ? "active" : undefined)) 
-                    a(href="/create-user") CREATE USER
-                li(class=((path == '/books') ? "active" : undefined)) 
-                    a(href="/books") KHO
+                    a(href="/create-user") Thêm user
+                li(class=((path == '/create-sneaker') ? "active" : undefined)) 
+                    a(href="/create-sneaker") Thêm giày
+                li
+                    a(href="/logout") Logout
